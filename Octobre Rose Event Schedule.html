@@ -1,0 +1,836 @@
+<!DOCTYPE html>
+<html lang="fr" class="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>Octobre Rose 2026 - Programme & Agenda</title>
+  
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  
+  <!-- FontAwesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
+  <!-- Google Fonts (Plus Jakarta Sans & Outfit) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Outfit:wght@500;600;700;800&display=swap" rel="stylesheet">
+
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Plus Jakarta Sans', 'sans-serif'],
+            heading: ['Outfit', 'sans-serif'],
+          },
+          colors: {
+            rose: {
+              50: '#fff1f2',
+              100: '#ffe4e6',
+              200: '#fecdd3',
+              300: '#fda4af',
+              400: '#fb7185',
+              500: '#f43f5e',
+              600: '#e11d48',
+              700: '#be123c',
+              800: '#9f1239',
+              900: '#881337',
+              accent: '#f472b6',
+              softBg: '#fdf2f8',
+              cardBg: '#ffffff',
+            }
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    /* Custom Scrollbar */
+    ::-webkit-scrollbar {
+      width: 4px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #fdf2f8;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #f472b6;
+      border-radius: 4px;
+    }
+
+    /* Soft Pink Glassmorphism */
+    .glass-card {
+      background: rgba(255, 255, 255, 0.88);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      border: 1px solid rgba(251, 113, 133, 0.18);
+      box-shadow: 0 4px 20px -2px rgba(225, 29, 72, 0.05);
+    }
+    
+    .glass-header {
+      background: rgba(253, 242, 248, 0.92);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border-bottom: 1px solid rgba(251, 113, 133, 0.2);
+    }
+
+    /* Pulse Dot for Live Session */
+    @keyframes pulse-ring {
+      0% { transform: scale(0.95); opacity: 0.9; }
+      50% { transform: scale(1.35); opacity: 0.3; }
+      100% { transform: scale(0.95); opacity: 0.9; }
+    }
+    .pulse-dot::before {
+      content: '';
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      background-color: inherit;
+      border-radius: 50%;
+      animation: pulse-ring 2s infinite ease-in-out;
+      z-index: -1;
+    }
+
+    /* Category Pill Active State */
+    .cat-active {
+      background: linear-gradient(135deg, #e11d48 0%, #f43f5e 100%);
+      color: #ffffff !important;
+      box-shadow: 0 4px 12px rgba(225, 29, 72, 0.3);
+      border-color: transparent !important;
+    }
+
+    body {
+      overscroll-behavior-y: contain;
+      -webkit-tap-highlight-color: transparent;
+    }
+  </style>
+</head>
+<body class="bg-gradient-to-b from-rose-50 via-rose-softBg to-rose-100/40 text-slate-800 min-h-screen font-sans antialiased selection:bg-rose-500 selection:text-white pb-24">
+
+  <!-- TOP HERO HEADER SECTION -->
+  <header class="relative overflow-hidden pt-7 pb-6 px-4 sm:px-6 border-b border-rose-200/80 bg-gradient-to-br from-rose-500 via-rose-600 to-rose-700 text-white">
+    <!-- Ambient Ribbon Decorative Blur Effects -->
+    <div class="absolute -top-16 -left-12 w-60 h-60 bg-rose-300/30 rounded-full blur-3xl pointer-events-none"></div>
+    <div class="absolute -bottom-16 -right-12 w-64 h-64 bg-pink-400/20 rounded-full blur-3xl pointer-events-none"></div>
+
+    <div class="max-w-md mx-auto relative z-10">
+      
+      <!-- Top Ribbon Badge & Live Quick Jump Button -->
+      <div class="flex items-center justify-between mb-3">
+        <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-bold bg-white/20 text-white backdrop-blur-md border border-white/30">
+          <!-- Pink Ribbon Icon -->
+          <i class="fa-solid fa-ribbon text-pink-200 text-sm"></i> Sensibilisation & Dépistage
+        </span>
+        
+        <!-- Live Now Quick Jump -->
+        <button id="quickLiveBtn" onclick="filterNowNext()" class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-bold bg-emerald-500/90 text-white shadow-md hover:bg-emerald-600 transition-all">
+          <span class="relative flex h-2 w-2">
+            <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-white opacity-80"></span>
+            <span class="relative inline-flex rounded-full h-2 w-2 bg-white"></span>
+          </span>
+          En Ce Moment
+        </button>
+      </div>
+
+      <!-- Event Title & Date -->
+      <div class="flex items-start gap-3">
+        <!-- Big Pink Ribbon Symbol -->
+        <div class="w-12 h-12 rounded-2xl bg-white/15 border border-white/30 flex items-center justify-center shrink-0 shadow-inner">
+          <i class="fa-solid fa-ribbon text-2xl text-pink-100"></i>
+        </div>
+
+        <div>
+          <h1 class="font-heading text-2xl sm:text-3xl font-extrabold tracking-tight text-white leading-tight">
+            Journée Octobre Rose <span class="text-pink-200">2026</span>
+          </h1>
+          <p class="text-rose-100 text-xs sm:text-sm mt-0.5 leading-relaxed font-medium">
+            Prévention, Information & Soutien contre le Cancer du Sein.
+          </p>
+        </div>
+      </div>
+
+      <!-- Quick Info Badges Grid (One Day Details) -->
+      <div class="grid grid-cols-2 gap-2 text-xs mt-4">
+        <div class="flex items-center gap-2.5 p-2.5 rounded-xl bg-white/10 backdrop-blur-md border border-white/20 text-white">
+          <div class="w-7 h-7 rounded-lg bg-white/20 flex items-center justify-center shrink-0">
+            <i class="fa-regular fa-calendar-check text-xs"></i>
+          </div>
+          <div>
+            <div class="text-[9px] uppercase tracking-wider text-rose-200 font-bold">Date Unique</div>
+            <div class="font-bold text-white">Samedi 24 Octobre</div>
+          </div>
+        </div>
+
+        <div class="flex items-center gap-2.5 p-2.5 rounded-xl bg-white/10 backdrop-blur-md border border-white/20 text-white">
+          <div class="w-7 h-7 rounded-lg bg-white/20 flex items-center justify-center shrink-0">
+            <i class="fa-solid fa-location-dot text-xs"></i>
+          </div>
+          <div>
+            <div class="text-[9px] uppercase tracking-wider text-rose-200 font-bold">Lieu</div>
+            <div class="font-bold text-white truncate max-w-[110px]">Espace Santé & Culture</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </header>
+
+  <!-- STICKY CONTROL BAR (SEARCH & CATEGORY FILTERS) -->
+  <section class="sticky top-0 z-30 glass-header px-4 py-3 shadow-sm">
+    <div class="max-w-md mx-auto space-y-2.5">
+      
+      <!-- Search Bar -->
+      <div class="relative">
+        <i class="fa-solid fa-magnifying-glass absolute left-3.5 top-1/2 -translate-y-1/2 text-rose-400 text-xs"></i>
+        <input 
+          type="text" 
+          id="searchInput" 
+          placeholder="Rechercher sujet, médecin, atelier, salle..." 
+          oninput="handleSearch()"
+          class="w-full bg-white text-slate-800 placeholder-rose-300 text-xs rounded-xl pl-9 pr-8 py-2.5 border border-rose-200/90 focus:outline-none focus:border-rose-500 focus:ring-2 focus:ring-rose-200 shadow-sm transition-all"
+        >
+        <button id="clearSearchBtn" onclick="clearSearch()" class="hidden absolute right-3 top-1/2 -translate-y-1/2 text-rose-400 hover:text-rose-600 text-xs p-1">
+          <i class="fa-solid fa-xmark"></i>
+        </button>
+      </div>
+
+      <!-- Categories & Favorite Bookmark Toggle Row -->
+      <div class="flex items-center justify-between gap-1.5">
+        
+        <!-- Category Horizontal Pills -->
+        <div id="categoryPills" class="flex items-center gap-1.5 overflow-x-auto no-scrollbar text-[11px] py-0.5">
+          <button onclick="filterCategory('all')" class="cat-pill cat-active px-3 py-1 rounded-full whitespace-nowrap font-bold border border-rose-200 bg-white text-rose-700">Touts</button>
+          <button onclick="filterCategory('Médical')" class="cat-pill bg-white text-rose-800 border border-rose-200 hover:bg-rose-50 px-3 py-1 rounded-full whitespace-nowrap font-semibold">Médical</button>
+          <button onclick="filterCategory('Atelier')" class="cat-pill bg-white text-rose-800 border border-rose-200 hover:bg-rose-50 px-3 py-1 rounded-full whitespace-nowrap font-semibold">Ateliers</button>
+          <button onclick="filterCategory('Témoignage')" class="cat-pill bg-white text-rose-800 border border-rose-200 hover:bg-rose-50 px-3 py-1 rounded-full whitespace-nowrap font-semibold">Témoignages</button>
+          <button onclick="filterCategory('Pause')" class="cat-pill bg-white text-rose-800 border border-rose-200 hover:bg-rose-50 px-3 py-1 rounded-full whitespace-nowrap font-semibold">Convivialité</button>
+        </div>
+
+        <!-- Saved Sessions Bookmark Filter Button -->
+        <button onclick="toggleFavoritesOnly()" id="favToggleBtn" class="bg-white text-rose-700 hover:bg-rose-50 border border-rose-200 px-2.5 py-1 rounded-full text-xs font-bold flex items-center gap-1 shrink-0 transition-all shadow-sm" title="Voir mes sessions enregistrées">
+          <i class="fa-solid fa-heart text-rose-400" id="favToggleIcon"></i>
+          <span id="favCountBadge" class="hidden bg-rose-600 text-white text-[10px] px-1.5 py-0.2 rounded-full font-bold">0</span>
+        </button>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- MAIN SCHEDULE TIMELINE FEED -->
+  <main class="max-w-md mx-auto px-4 pt-5">
+    
+    <!-- Active Filter Banner Alert -->
+    <div id="activeFilterBanner" class="hidden mb-4 p-2.5 bg-rose-100/80 border border-rose-300/80 rounded-xl flex items-center justify-between text-xs text-rose-900 shadow-sm">
+      <span id="filterBannerText" class="flex items-center gap-1.5 truncate font-medium">
+        <i class="fa-solid fa-filter text-rose-600"></i> Filtre actif
+      </span>
+      <button onclick="resetAllFilters()" class="text-rose-700 hover:text-rose-900 underline text-[11px] font-bold shrink-0">Réinitialiser</button>
+    </div>
+
+    <!-- Timeline Vertical Line Container -->
+    <div id="timelineContainer" class="relative border-l-2 border-rose-200/80 ml-3.5 pl-5 sm:pl-6 space-y-5">
+      <!-- Session items will be dynamically generated by Javascript -->
+    </div>
+
+    <!-- Empty State -->
+    <div id="emptyState" class="hidden text-center py-12 px-4">
+      <div class="w-12 h-12 rounded-2xl bg-rose-100 text-rose-500 flex items-center justify-center mx-auto mb-3 text-lg border border-rose-200">
+        <i class="fa-solid fa-calendar-xmark"></i>
+      </div>
+      <h3 class="text-slate-800 font-bold text-sm mb-1">Aucune session trouvée</h3>
+      <p class="text-rose-700/80 text-xs max-w-xs mx-auto mb-4">Ajustez vos mots-clés de recherche ou vos filtres de catégorie.</p>
+      <button onclick="resetAllFilters()" class="px-4 py-2 rounded-xl bg-rose-600 text-white text-xs font-bold hover:bg-rose-700 shadow-md transition-colors">
+        Afficher tout le programme
+      </button>
+    </div>
+
+  </main>
+
+  <!-- FOOTER QUICK TOOLBAR -->
+  <footer class="fixed bottom-0 left-0 right-0 z-40 glass-header border-t border-rose-200/80 px-4 py-2 shadow-xl">
+    <div class="max-w-md mx-auto flex items-center justify-around gap-1">
+      
+      <!-- Early Detection Info Button -->
+      <button onclick="openModal('infoModal')" class="flex flex-col items-center gap-0.5 text-rose-800 hover:text-rose-600 transition-colors py-1 px-3 rounded-xl">
+        <i class="fa-solid fa-ribbon text-base text-rose-600"></i>
+        <span class="text-[10px] font-bold">Dépistage</span>
+      </button>
+
+      <!-- Venue Map Button -->
+      <button onclick="openModal('mapModal')" class="flex flex-col items-center gap-0.5 text-rose-800 hover:text-rose-600 transition-colors py-1 px-3 rounded-lg">
+        <i class="fa-solid fa-map-location-dot text-base text-rose-600"></i>
+        <span class="text-[10px] font-bold">Plan des Salles</span>
+      </button>
+
+      <!-- WiFi Info Button -->
+      <button onclick="openModal('wifiModal')" class="flex flex-col items-center gap-0.5 text-rose-800 hover:text-rose-600 transition-colors py-1 px-3 rounded-lg">
+        <i class="fa-solid fa-wifi text-base text-rose-600"></i>
+        <span class="text-[10px] font-bold">WiFi Gratuit</span>
+      </button>
+
+    </div>
+  </footer>
+
+  <!-- MODAL 1: EARLY DETECTION & DONATION INFORMATION -->
+  <div id="infoModal" class="fixed inset-0 z-50 bg-slate-900/60 backdrop-blur-sm hidden items-center justify-center p-4">
+    <div class="bg-white border border-rose-200 rounded-2xl w-full max-w-sm p-5 shadow-2xl relative max-h-[85vh] overflow-y-auto">
+      <button onclick="closeModal('infoModal')" class="absolute top-4 right-4 text-slate-400 hover:text-slate-700 p-1">
+        <i class="fa-solid fa-xmark text-lg"></i>
+      </button>
+
+      <div class="flex items-center gap-3 mb-4">
+        <div class="w-10 h-10 rounded-xl bg-rose-100 text-rose-600 flex items-center justify-center shrink-0">
+          <i class="fa-solid fa-ribbon text-xl"></i>
+        </div>
+        <div>
+          <h3 class="font-heading font-bold text-slate-800 text-base">L'importance du Dépistage</h3>
+          <p class="text-rose-600 text-xs font-semibold">Détecté tôt, guéri dans 9 cas sur 10</p>
+        </div>
+      </div>
+
+      <div class="space-y-3 text-xs text-slate-600 leading-relaxed">
+        <p class="bg-rose-50 p-3 rounded-xl border border-rose-100 text-rose-900">
+          <strong>L'Autopalpation :</strong> Apprenez les gestes simples à réaliser une fois par mois pour surveiller la santé de votre poitrine.
+        </p>
+
+        <div class="space-y-2">
+          <h4 class="font-bold text-slate-800 text-xs">Recommandations médicales :</h4>
+          <ul class="list-disc pl-4 space-y-1">
+            <li>Un examen clinique par an dès 25 ans.</li>
+            <li>Une mammographie de dépistage tous les 2 ans entre 50 et 74 ans.</li>
+            <li>Consulter un professionnel en cas de modification d'aspect.</li>
+          </ul>
+        </div>
+
+        <div class="pt-2 border-t border-rose-100">
+          <a href="https://www.ligue-cancer.net" target="_blank" class="w-full py-2.5 bg-rose-600 hover:bg-rose-700 text-white text-xs font-bold rounded-xl text-center block transition-colors shadow-md">
+            <i class="fa-solid fa-heart mr-1.5"></i> Faire un Don à la Recherche
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- MODAL 2: VENUE MAP -->
+  <div id="mapModal" class="fixed inset-0 z-50 bg-slate-900/60 backdrop-blur-sm hidden items-center justify-center p-4">
+    <div class="bg-white border border-rose-200 rounded-2xl w-full max-w-sm p-5 shadow-2xl relative">
+      <button onclick="closeModal('mapModal')" class="absolute top-4 right-4 text-slate-400 hover:text-slate-700 p-1">
+        <i class="fa-solid fa-xmark text-lg"></i>
+      </button>
+
+      <div class="flex items-center gap-3 mb-4">
+        <div class="w-10 h-10 rounded-xl bg-rose-100 text-rose-600 flex items-center justify-center shrink-0">
+          <i class="fa-solid fa-map-location-dot text-xl"></i>
+        </div>
+        <div>
+          <h3 class="font-heading font-bold text-slate-800 text-base">Plan de la Journée</h3>
+          <p class="text-rose-600 text-xs font-semibold">Espace Santé & Culture</p>
+        </div>
+      </div>
+
+      <!-- Schematic Layout Grid -->
+      <div class="grid grid-cols-2 gap-2 text-[11px] mb-4">
+        <div class="p-3 bg-rose-50 border border-rose-200 rounded-xl text-rose-900">
+          <i class="fa-solid fa-hospital-user mb-1 text-rose-600 text-sm"></i>
+          <span class="font-bold block">Grand Amphithéâtre</span>
+          <span class="text-[10px] text-rose-700">Rez-de-Chaussée - Conférences</span>
+        </div>
+        <div class="p-3 bg-rose-50 border border-rose-200 rounded-xl text-rose-900">
+          <i class="fa-solid fa-hand-holding-medical mb-1 text-rose-600 text-sm"></i>
+          <span class="font-bold block">Salle d'Atelier 102</span>
+          <span class="text-[10px] text-rose-700">1er Étage - Pratique</span>
+        </div>
+        <div class="p-3 bg-rose-50 border border-rose-200 rounded-xl text-rose-900">
+          <i class="fa-solid fa-mug-hot mb-1 text-rose-600 text-sm"></i>
+          <span class="font-bold block">Espace Convivialité</span>
+          <span class="text-[10px] text-rose-700">Atrium Central - Pause Café</span>
+        </div>
+        <div class="p-3 bg-rose-50 border border-rose-200 rounded-xl text-rose-900">
+          <i class="fa-solid fa-stethoscope mb-1 text-rose-600 text-sm"></i>
+          <span class="font-bold block">Stand Dépistage</span>
+          <span class="text-[10px] text-rose-700">Entrée Principale</span>
+        </div>
+      </div>
+
+      <button onclick="closeModal('mapModal')" class="w-full py-2.5 bg-slate-100 hover:bg-slate-200 text-slate-700 text-xs font-bold rounded-xl transition-colors">
+        Fermer
+      </button>
+    </div>
+  </div>
+
+  <!-- MODAL 3: WIFI DETAILS -->
+  <div id="wifiModal" class="fixed inset-0 z-50 bg-slate-900/60 backdrop-blur-sm hidden items-center justify-center p-4">
+    <div class="bg-white border border-rose-200 rounded-2xl w-full max-w-sm p-5 shadow-2xl relative">
+      <button onclick="closeModal('wifiModal')" class="absolute top-4 right-4 text-slate-400 hover:text-slate-700 p-1">
+        <i class="fa-solid fa-xmark text-lg"></i>
+      </button>
+
+      <div class="flex items-center gap-3 mb-4">
+        <div class="w-10 h-10 rounded-xl bg-rose-100 text-rose-600 flex items-center justify-center shrink-0">
+          <i class="fa-solid fa-wifi text-xl"></i>
+        </div>
+        <div>
+          <h3 class="font-heading font-bold text-slate-800 text-base">Accès WiFi Visiteurs</h3>
+          <p class="text-rose-600 text-xs font-semibold">Connexion haut débit gratuite</p>
+        </div>
+      </div>
+
+      <div class="space-y-2.5 bg-rose-50/80 p-3.5 rounded-xl border border-rose-200 text-xs mb-4">
+        <div class="flex justify-between items-center">
+          <span class="text-slate-600">Réseau :</span>
+          <span class="font-mono font-bold text-slate-800">OctobreRose_2026</span>
+        </div>
+        <div class="flex justify-between items-center border-t border-rose-200/60 pt-2">
+          <span class="text-slate-600">Mot de passe :</span>
+          <div class="flex items-center gap-1.5">
+            <span class="font-mono font-bold text-rose-700">TousEnsemble2026</span>
+            <button onclick="copyToClipboard('TousEnsemble2026', 'Mot de passe WiFi')" class="text-rose-500 hover:text-rose-700 p-1" title="Copier">
+              <i class="fa-regular fa-copy"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <button onclick="closeModal('wifiModal')" class="w-full py-2.5 bg-slate-100 hover:bg-slate-200 text-slate-700 text-xs font-bold rounded-xl transition-colors">
+        Fermer
+      </button>
+    </div>
+  </div>
+
+  <!-- TOAST NOTIFICATION -->
+  <div id="toast" class="fixed top-5 left-1/2 -translate-x-1/2 z-50 bg-slate-800 text-white border border-slate-700 px-4 py-2.5 rounded-2xl text-xs shadow-2xl opacity-0 transition-all pointer-events-none flex items-center gap-2">
+    <i id="toastIcon" class="fa-solid fa-heart text-rose-400"></i>
+    <span id="toastMessage">Action effectuée</span>
+  </div>
+
+  <!-- APPLICATION LOGIC & SINGLE-DAY EVENT DATA -->
+  <script>
+    // 1-Day Event Schedule Database (24 Octobre)
+    const octoberRoseSchedule = [
+      {
+        id: 'or-1',
+        time: '08:30 - 09:15',
+        title: 'Accueil, Café Rose & Remise des Rubans',
+        room: 'Atrium Central',
+        speaker: 'Équipe d\'Organisation & Bénévoles',
+        speakerRole: 'Accueil des participants',
+        avatar: '',
+        category: 'Pause',
+        description: 'Bienvenue aux participants, petit-déjeuner convivial et distribution des rubans roses symboliques.',
+        isLive: false
+      },
+      {
+        id: 'or-2',
+        time: '09:15 - 10:00',
+        title: 'Cérémonie d\'Ouverture & Discours d\'Inauguration',
+        room: 'Grand Amphithéâtre',
+        speaker: 'Dr. Sophie Laurent & Comité Médical',
+        speakerRole: 'Oncologue & Présidente de l\'Association',
+        avatar: 'https://images.unsplash.com/photo-1594824813566-78a93272d3f9?auto=format&fit=crop&w=150&q=80',
+        category: 'Médical',
+        description: 'Lancement officiel de la journée de sensibilisation, chiffres clés et avancées de la recherche.',
+        isLive: true // Initial live session for demonstration
+      },
+      {
+        id: 'or-3',
+        time: '10:15 - 11:30',
+        title: 'Conférence Médicale : Dépistage Précoce & Prévention',
+        room: 'Grand Amphithéâtre',
+        speaker: 'Dr. Marc Benali & Dr. Claire Dupont',
+        speakerRole: 'Radiologue & Sénologue',
+        avatar: 'https://images.unsplash.com/photo-1622253692010-333f2da6031d?auto=format&fit=crop&w=150&q=80',
+        category: 'Médical',
+        description: 'Comprendre l\'importance de la mammographie, l\'évolution des traitements et la détection précoce.',
+        isLive: false
+      },
+      {
+        id: 'or-4',
+        time: '11:45 - 12:45',
+        title: 'Atelier Pratique : Apprendre les Gestes de l\'Autopalpation',
+        room: 'Salle d\'Atelier 102',
+        speaker: 'Florence Martin',
+        speakerRole: 'Sage-Femme Formatrice',
+        avatar: 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=150&q=80',
+        category: 'Atelier',
+        description: 'Démonstrations interactives sur bustes anatomiques de simulation pour acquérir les bons reflexes.',
+        isLive: false
+      },
+      {
+        id: 'or-5',
+        time: '12:45 - 14:15',
+        title: 'Buffet Solidaire & Stands d\'Information',
+        room: 'Espace Convivialité',
+        speaker: 'Associations Partenaires',
+        speakerRole: 'Restauration & Échanges',
+        avatar: '',
+        category: 'Pause',
+        description: 'Déjeuner solidaire, stands d\'associations et échanges informels entre participants et professionnels.',
+        isLive: false
+      },
+      {
+        id: 'or-6',
+        time: '14:15 - 15:30',
+        title: 'Table Ronde : Témoignages & Parcours de Guérison',
+        room: 'Grand Amphithéâtre',
+        speaker: 'Panélistes : Valérie, Marie & Éléonore',
+        speakerRole: 'Patientes Partenaires',
+        avatar: 'https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&w=150&q=80',
+        category: 'Témoignage',
+        description: 'Partage d\'expériences poignants sur la résilience, le soutien familial et le retour à la vie active.',
+        isLive: false
+      },
+      {
+        id: 'or-7',
+        time: '15:45 - 16:45',
+        title: 'Atelier Bien-Être & Soins de Support',
+        room: 'Salle d\'Atelier 102',
+        speaker: 'Camille Roche & Isabelle K.',
+        speakerRole: 'Socio-Esthéticienne & Professeure de Yoga Adaptation',
+        avatar: 'https://images.unsplash.com/photo-1580489944761-15a19d654956?auto=format&fit=crop&w=150&q=80',
+        category: 'Atelier',
+        description: 'Découverte des soins de confort, de la gestion du stress et de l\'activité physique adaptée.',
+        isLive: false
+      },
+      {
+        id: 'or-8',
+        time: '17:00 - 17:30',
+        title: 'Marche Rose Solidaire & Clôture de la Journée',
+        room: 'Parvis Extérieur',
+        speaker: 'Tous les participants',
+        speakerRole: 'Rassemblement Collectif',
+        avatar: '',
+        category: 'Témoignage',
+        description: 'Marche symbolique autour de l\'Espace Santé et lâcher de ballons éco-responsables.',
+        isLive: false
+      }
+    ];
+
+    // State Variables
+    let selectedCategory = 'all';
+    let searchQuery = '';
+    let showFavoritesOnly = false;
+    let favorites = JSON.parse(localStorage.getItem('octobre_rose_favs') || '[]');
+
+    document.addEventListener('DOMContentLoaded', () => {
+      renderTimeline();
+      updateFavBadge();
+    });
+
+    // Render Timeline Session Cards
+    function renderTimeline() {
+      const container = document.getElementById('timelineContainer');
+      const emptyState = document.getElementById('emptyState');
+      
+      let sessions = [...octobreRoseSchedule];
+
+      // 1. Search Filter
+      if (searchQuery.trim() !== '') {
+        const q = searchQuery.toLowerCase();
+        sessions = sessions.filter(s => 
+          s.title.toLowerCase().includes(q) ||
+          s.speaker.toLowerCase().includes(q) ||
+          s.room.toLowerCase().includes(q) ||
+          s.category.toLowerCase().includes(q) ||
+          s.description.toLowerCase().includes(q)
+        );
+      }
+
+      // 2. Category Filter
+      if (selectedCategory !== 'all') {
+        sessions = sessions.filter(s => s.category.toLowerCase() === selectedCategory.toLowerCase());
+      }
+
+      // 3. Favorites Filter
+      if (showFavoritesOnly) {
+        sessions = sessions.filter(s => favorites.includes(s.id));
+      }
+
+      updateFilterBanner(sessions.length);
+
+      if (sessions.length === 0) {
+        container.innerHTML = '';
+        emptyState.classList.remove('hidden');
+        return;
+      } else {
+        emptyState.classList.add('hidden');
+      }
+
+      container.innerHTML = sessions.map(session => {
+        const isFav = favorites.includes(session.id);
+        const categoryStyle = getCategoryStyle(session.category);
+
+        return `
+          <div class="relative group">
+            
+            <!-- Timeline Marker Icon -->
+            <div class="absolute -left-[29px] sm:-left-[33px] top-4 w-4 h-4 rounded-full border-2 ${session.isLive ? 'bg-emerald-500 border-white ring-4 ring-emerald-500/20 pulse-dot' : 'bg-rose-400 border-white'} transition-all"></div>
+
+            <!-- Session Card -->
+            <div class="glass-card rounded-2xl p-4 transition-all duration-200 ${session.isLive ? 'ring-2 ring-emerald-500/50 bg-white/95' : ''}">
+              
+              <!-- Card Top Header -->
+              <div class="flex items-center justify-between gap-2 mb-2">
+                <div class="flex items-center gap-2">
+                  <span class="text-xs font-mono font-bold text-rose-700 bg-rose-100/80 px-2 py-0.5 rounded-md border border-rose-200">
+                    <i class="fa-regular fa-clock text-[10px] mr-1"></i>${session.time}
+                  </span>
+                  
+                  ${session.isLive ? `
+                    <span class="bg-emerald-500 text-white text-[10px] font-bold px-2 py-0.5 rounded-full flex items-center gap-1 shadow-sm">
+                      EN CE MOMENT
+                    </span>
+                  ` : ''}
+                </div>
+
+                <!-- Heart Bookmark Button -->
+                <button onclick="toggleFavorite('${session.id}')" class="text-rose-300 hover:text-rose-600 p-1.5 rounded-lg transition-colors" title="${isFav ? 'Retirer des favoris' : 'Ajouter à mon programme'}">
+                  <i class="${isFav ? 'fa-solid fa-heart text-rose-600' : 'fa-regular fa-heart'} text-base"></i>
+                </button>
+              </div>
+
+              <!-- Session Title -->
+              <h3 class="font-heading font-bold text-slate-800 text-sm sm:text-base leading-snug mb-1.5">
+                ${highlightText(session.title, searchQuery)}
+              </h3>
+
+              <!-- Session Description -->
+              <p class="text-slate-600 text-xs leading-relaxed mb-3">
+                ${session.description}
+              </p>
+
+              <!-- Card Footer: Speaker & Tags -->
+              <div class="flex flex-wrap items-center justify-between gap-2 pt-2.5 border-t border-rose-100">
+                
+                <!-- Speaker Info -->
+                <div class="flex items-center gap-2">
+                  ${session.avatar ? `
+                    <img src="${session.avatar}" alt="${session.speaker}" class="w-6 h-6 rounded-full object-cover border border-rose-200" onerror="this.src='https://placehold.co/100x100/fecdd3/881337?text=Rose'">
+                  ` : `
+                    <div class="w-6 h-6 rounded-full bg-rose-100 text-rose-600 flex items-center justify-center text-[10px] font-bold"><i class="fa-solid fa-user"></i></div>
+                  `}
+                  <div>
+                    <div class="text-xs font-bold text-slate-800 leading-none">${session.speaker}</div>
+                    ${session.speakerRole ? `<div class="text-[10px] text-rose-700/80 leading-tight mt-0.5 font-medium">${session.speakerRole}</div>` : ''}
+                  </div>
+                </div>
+
+                <!-- Room & Category Badges -->
+                <div class="flex items-center gap-1.5 ml-auto">
+                  <span class="text-[10px] font-bold text-slate-600 bg-slate-100 px-2 py-0.5 rounded-md border border-slate-200">
+                    <i class="fa-solid fa-location-dot text-[9px] mr-1 text-slate-400"></i>${session.room}
+                  </span>
+                  <span class="text-[10px] font-bold ${categoryStyle} px-2 py-0.5 rounded-md">
+                    ${session.category}
+                  </span>
+                </div>
+
+              </div>
+
+            </div>
+          </div>
+        `;
+      }).join('');
+    }
+
+    // Category Color Styling
+    function getCategoryStyle(cat) {
+      switch (cat) {
+        case 'Médical':
+          return 'bg-rose-100 text-rose-800 border border-rose-300';
+        case 'Atelier':
+          return 'bg-purple-100 text-purple-800 border border-purple-200';
+        case 'Témoignage':
+          return 'bg-pink-100 text-pink-800 border border-pink-200';
+        case 'Pause':
+          return 'bg-amber-100 text-amber-800 border border-amber-200';
+        default:
+          return 'bg-slate-100 text-slate-700';
+      }
+    }
+
+    // Filter by Category Pill
+    function filterCategory(cat) {
+      selectedCategory = cat;
+      const pills = document.querySelectorAll('.cat-pill');
+      pills.forEach(pill => {
+        if (pill.innerText.toLowerCase().includes(cat.toLowerCase()) || (cat === 'all' && pill.innerText.includes('Touts'))) {
+          pill.className = 'cat-pill cat-active px-3 py-1 rounded-full whitespace-nowrap font-bold border border-rose-200 bg-white text-rose-700';
+        } else {
+          pill.className = 'cat-pill bg-white text-rose-800 border border-rose-200 hover:bg-rose-50 px-3 py-1 rounded-full whitespace-nowrap font-semibold';
+        }
+      });
+
+      renderTimeline();
+    }
+
+    // Handle Search
+    function handleSearch() {
+      const input = document.getElementById('searchInput');
+      const clearBtn = document.getElementById('clearSearchBtn');
+      searchQuery = input.value;
+
+      if (searchQuery.length > 0) {
+        clearBtn.classList.remove('hidden');
+      } else {
+        clearBtn.classList.add('hidden');
+      }
+
+      renderTimeline();
+    }
+
+    function clearSearch() {
+      document.getElementById('searchInput').value = '';
+      document.getElementById('clearSearchBtn').classList.add('hidden');
+      searchQuery = '';
+      renderTimeline();
+    }
+
+    // Toggle Favorite Bookmarks
+    function toggleFavorite(id) {
+      if (favorites.includes(id)) {
+        favorites = favorites.filter(favId => favId !== id);
+        showToast('Retiré de votre agenda personnalisé');
+      } else {
+        favorites.push(id);
+        showToast('Session ajoutée à votre agenda !');
+      }
+      
+      localStorage.setItem('octobre_rose_favs', JSON.stringify(favorites));
+      updateFavBadge();
+      renderTimeline();
+    }
+
+    function toggleFavoritesOnly() {
+      showFavoritesOnly = !showFavoritesOnly;
+      const btn = document.getElementById('favToggleBtn');
+      const icon = document.getElementById('favToggleIcon');
+
+      if (showFavoritesOnly) {
+        btn.classList.add('bg-rose-600', 'text-white');
+        btn.classList.remove('bg-white', 'text-rose-700');
+        icon.classList.remove('text-rose-400');
+        icon.classList.add('text-white');
+        showToast('Affichage de vos favoris');
+      } else {
+        btn.classList.remove('bg-rose-600', 'text-white');
+        btn.classList.add('bg-white', 'text-rose-700');
+        icon.classList.remove('text-white');
+        icon.classList.add('text-rose-400');
+      }
+
+      renderTimeline();
+    }
+
+    function updateFavBadge() {
+      const countBadge = document.getElementById('favCountBadge');
+      if (favorites.length > 0) {
+        countBadge.innerText = favorites.length;
+        countBadge.classList.remove('hidden');
+      } else {
+        countBadge.classList.add('hidden');
+      }
+    }
+
+    // Quick Jump to Current Live Session
+    function filterNowNext() {
+      searchQuery = '';
+      document.getElementById('searchInput').value = '';
+      selectedCategory = 'all';
+      showFavoritesOnly = false;
+      
+      showToast('Session en cours sélectionnée');
+      renderTimeline();
+
+      setTimeout(() => {
+        const liveElem = document.querySelector('.pulse-dot');
+        if (liveElem) {
+          liveElem.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        }
+      }, 100);
+    }
+
+    // Filter Banner Text Update
+    function updateFilterBanner(resultCount) {
+      const banner = document.getElementById('activeFilterBanner');
+      const text = document.getElementById('filterBannerText');
+
+      let activeFilters = [];
+      if (searchQuery) activeFilters.push(`"${searchQuery}"`);
+      if (selectedCategory !== 'all') activeFilters.push(selectedCategory);
+      if (showFavoritesOnly) activeFilters.push('Mon Agenda');
+
+      if (activeFilters.length > 0) {
+        text.innerHTML = `<i class="fa-solid fa-filter text-rose-600"></i> Filtre : <strong>${activeFilters.join(', ')}</strong> (${resultCount} session(s))`;
+        banner.classList.remove('hidden');
+      } else {
+        banner.classList.add('hidden');
+      }
+    }
+
+    function resetAllFilters() {
+      searchQuery = '';
+      selectedCategory = 'all';
+      showFavoritesOnly = false;
+      document.getElementById('searchInput').value = '';
+      document.getElementById('clearSearchBtn').classList.add('hidden');
+      
+      filterCategory('all');
+      renderTimeline();
+      showToast('Filtres réinitialisés');
+    }
+
+    function highlightText(text, query) {
+      if (!query || query.trim() === '') return text;
+      const regex = new RegExp(`(${query})`, 'gi');
+      return text.replace(regex, '<mark class="bg-rose-200 text-rose-900 px-0.5 rounded">$1</mark>');
+    }
+
+    // Modals
+    function openModal(id) {
+      const modal = document.getElementById(id);
+      if (modal) {
+        modal.classList.remove('hidden');
+        modal.classList.add('flex');
+      }
+    }
+
+    function closeModal(id) {
+      const modal = document.getElementById(id);
+      if (modal) {
+        modal.classList.add('hidden');
+        modal.classList.remove('flex');
+      }
+    }
+
+    // Clipboard Copy Utility
+    function copyToClipboard(text, label) {
+      const tempInput = document.createElement('input');
+      tempInput.value = text;
+      document.body.appendChild(tempInput);
+      tempInput.select();
+      document.execCommand('copy');
+      document.body.removeChild(tempInput);
+      
+      showToast(`${label} copié !`);
+    }
+
+    // Toast Notification
+    function showToast(msg) {
+      const toast = document.getElementById('toast');
+      const toastMsg = document.getElementById('toastMessage');
+
+      toastMsg.innerText = msg;
+      toast.classList.remove('opacity-0', 'pointer-events-none');
+      toast.classList.add('opacity-100');
+
+      setTimeout(() => {
+        toast.classList.remove('opacity-100');
+        toast.classList.add('opacity-0', 'pointer-events-none');
+      }, 2200);
+    }
+  </script>
+</body>
+</html>
